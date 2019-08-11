@@ -1,0 +1,735 @@
+{
+	"frames": {
+		"banker.png": {
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 448,
+				"h": 304
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 448,
+				"h": 304
+			},
+			"sourceSize": {
+				"w": 448,
+				"h": 304
+			}
+		},
+		"bankerking.png": {
+			"frame": {
+				"x": 451,
+				"y": 1,
+				"w": 346,
+				"h": 156
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 346,
+				"h": 156
+			},
+			"sourceSize": {
+				"w": 346,
+				"h": 156
+			}
+		},
+		"bankerpair.png": {
+			"frame": {
+				"x": 451,
+				"y": 159,
+				"w": 420,
+				"h": 148
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 420,
+				"h": 148
+			},
+			"sourceSize": {
+				"w": 420,
+				"h": 148
+			}
+		},
+		"count.png": {
+			"frame": {
+				"x": 1,
+				"y": 309,
+				"w": 234,
+				"h": 36
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 234,
+				"h": 36
+			},
+			"sourceSize": {
+				"w": 234,
+				"h": 36
+			}
+		},
+		"countdown.png": {
+			"frame": {
+				"x": 799,
+				"y": 1,
+				"w": 96,
+				"h": 95
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 96,
+				"h": 95
+			},
+			"sourceSize": {
+				"w": 96,
+				"h": 95
+			}
+		},
+		"countdown0.png": {
+			"frame": {
+				"x": 799,
+				"y": 98,
+				"w": 23,
+				"h": 33
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 23,
+				"h": 33
+			},
+			"sourceSize": {
+				"w": 23,
+				"h": 33
+			}
+		},
+		"countdown1.png": {
+			"frame": {
+				"x": 897,
+				"y": 1,
+				"w": 17,
+				"h": 33
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 17,
+				"h": 33
+			},
+			"sourceSize": {
+				"w": 17,
+				"h": 33
+			}
+		},
+		"countdown2.png": {
+			"frame": {
+				"x": 824,
+				"y": 98,
+				"w": 27,
+				"h": 33
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 33
+			},
+			"sourceSize": {
+				"w": 27,
+				"h": 33
+			}
+		},
+		"countdown3.png": {
+			"frame": {
+				"x": 853,
+				"y": 98,
+				"w": 22,
+				"h": 33
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 22,
+				"h": 33
+			},
+			"sourceSize": {
+				"w": 22,
+				"h": 33
+			}
+		},
+		"countdown4.png": {
+			"frame": {
+				"x": 877,
+				"y": 98,
+				"w": 26,
+				"h": 32
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 26,
+				"h": 32
+			},
+			"sourceSize": {
+				"w": 26,
+				"h": 32
+			}
+		},
+		"countdown5.png": {
+			"frame": {
+				"x": 877,
+				"y": 132,
+				"w": 25,
+				"h": 32
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 25,
+				"h": 32
+			},
+			"sourceSize": {
+				"w": 25,
+				"h": 32
+			}
+		},
+		"countdown6.png": {
+			"frame": {
+				"x": 873,
+				"y": 166,
+				"w": 24,
+				"h": 33
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 24,
+				"h": 33
+			},
+			"sourceSize": {
+				"w": 24,
+				"h": 33
+			}
+		},
+		"countdown7.png": {
+			"frame": {
+				"x": 873,
+				"y": 201,
+				"w": 26,
+				"h": 32
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 26,
+				"h": 32
+			},
+			"sourceSize": {
+				"w": 26,
+				"h": 32
+			}
+		},
+		"countdown8.png": {
+			"frame": {
+				"x": 873,
+				"y": 235,
+				"w": 27,
+				"h": 33
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 33
+			},
+			"sourceSize": {
+				"w": 27,
+				"h": 33
+			}
+		},
+		"countdown9.png": {
+			"frame": {
+				"x": 873,
+				"y": 270,
+				"w": 24,
+				"h": 33
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 24,
+				"h": 33
+			},
+			"sourceSize": {
+				"w": 24,
+				"h": 33
+			}
+		},
+		"countdownBeting.png": {
+			"frame": {
+				"x": 237,
+				"y": 309,
+				"w": 68,
+				"h": 26
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 68,
+				"h": 26
+			},
+			"sourceSize": {
+				"w": 68,
+				"h": 26
+			}
+		},
+		"countdownPaying.png": {
+			"frame": {
+				"x": 799,
+				"y": 133,
+				"w": 65,
+				"h": 24
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 65,
+				"h": 24
+			},
+			"sourceSize": {
+				"w": 65,
+				"h": 24
+			}
+		},
+		"dealer.png": {
+			"frame": {
+				"x": 307,
+				"y": 309,
+				"w": 98,
+				"h": 84
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 98,
+				"h": 84
+			},
+			"sourceSize": {
+				"w": 98,
+				"h": 84
+			}
+		},
+		"endbet.png": {
+			"frame": {
+				"x": 407,
+				"y": 309,
+				"w": 346,
+				"h": 101
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 346,
+				"h": 101
+			},
+			"sourceSize": {
+				"w": 346,
+				"h": 101
+			}
+		},
+		"player.png": {
+			"frame": {
+				"x": 1,
+				"y": 412,
+				"w": 449,
+				"h": 311
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 449,
+				"h": 311
+			},
+			"sourceSize": {
+				"w": 449,
+				"h": 311
+			}
+		},
+		"playerking.png": {
+			"frame": {
+				"x": 452,
+				"y": 412,
+				"w": 345,
+				"h": 156
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 345,
+				"h": 156
+			},
+			"sourceSize": {
+				"w": 345,
+				"h": 156
+			}
+		},
+		"playerpair.png": {
+			"frame": {
+				"x": 452,
+				"y": 570,
+				"w": 421,
+				"h": 158
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 421,
+				"h": 158
+			},
+			"sourceSize": {
+				"w": 421,
+				"h": 158
+			}
+		},
+		"score0.png": {
+			"frame": {
+				"x": 755,
+				"y": 309,
+				"w": 63,
+				"h": 41
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 63,
+				"h": 41
+			},
+			"sourceSize": {
+				"w": 63,
+				"h": 41
+			}
+		},
+		"score1.png": {
+			"frame": {
+				"x": 820,
+				"y": 309,
+				"w": 59,
+				"h": 41
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 59,
+				"h": 41
+			},
+			"sourceSize": {
+				"w": 59,
+				"h": 41
+			}
+		},
+		"score2.png": {
+			"frame": {
+				"x": 1,
+				"y": 352,
+				"w": 60,
+				"h": 41
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 60,
+				"h": 41
+			},
+			"sourceSize": {
+				"w": 60,
+				"h": 41
+			}
+		},
+		"score3.png": {
+			"frame": {
+				"x": 63,
+				"y": 352,
+				"w": 60,
+				"h": 41
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 60,
+				"h": 41
+			},
+			"sourceSize": {
+				"w": 60,
+				"h": 41
+			}
+		},
+		"score4.png": {
+			"frame": {
+				"x": 125,
+				"y": 352,
+				"w": 62,
+				"h": 41
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 62,
+				"h": 41
+			},
+			"sourceSize": {
+				"w": 62,
+				"h": 41
+			}
+		},
+		"score5.png": {
+			"frame": {
+				"x": 189,
+				"y": 352,
+				"w": 61,
+				"h": 40
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 61,
+				"h": 40
+			},
+			"sourceSize": {
+				"w": 61,
+				"h": 40
+			}
+		},
+		"score6.png": {
+			"frame": {
+				"x": 755,
+				"y": 352,
+				"w": 61,
+				"h": 41
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 61,
+				"h": 41
+			},
+			"sourceSize": {
+				"w": 61,
+				"h": 41
+			}
+		},
+		"score7.png": {
+			"frame": {
+				"x": 818,
+				"y": 352,
+				"w": 60,
+				"h": 41
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 60,
+				"h": 41
+			},
+			"sourceSize": {
+				"w": 60,
+				"h": 41
+			}
+		},
+		"score8.png": {
+			"frame": {
+				"x": 799,
+				"y": 395,
+				"w": 62,
+				"h": 41
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 62,
+				"h": 41
+			},
+			"sourceSize": {
+				"w": 62,
+				"h": 41
+			}
+		},
+		"score9.png": {
+			"frame": {
+				"x": 799,
+				"y": 438,
+				"w": 61,
+				"h": 41
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 61,
+				"h": 41
+			},
+			"sourceSize": {
+				"w": 61,
+				"h": 41
+			}
+		},
+		"startbet.png": {
+			"frame": {
+				"x": 1,
+				"y": 730,
+				"w": 345,
+				"h": 95
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 345,
+				"h": 95
+			},
+			"sourceSize": {
+				"w": 345,
+				"h": 95
+			}
+		},
+		"startendbet.png": {
+			"frame": {
+				"x": 348,
+				"y": 730,
+				"w": 510,
+				"h": 125
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 510,
+				"h": 125
+			},
+			"sourceSize": {
+				"w": 510,
+				"h": 125
+			}
+		},
+		"tie.png": {
+			"frame": {
+				"x": 916,
+				"y": 1,
+				"w": 442,
+				"h": 187
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 442,
+				"h": 187
+			},
+			"sourceSize": {
+				"w": 442,
+				"h": 187
+			}
+		},
+		"tiepair.png": {
+			"frame": {
+				"x": 902,
+				"y": 190,
+				"w": 196,
+				"h": 163
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 196,
+				"h": 163
+			},
+			"sourceSize": {
+				"w": 196,
+				"h": 163
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "spritesheet.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 1359,
+			"h": 856
+		},
+		"scale": "1"
+	}
+}
