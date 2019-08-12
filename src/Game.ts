@@ -10,7 +10,9 @@ import Poker from './components/elements/Poker';
 
 export default class Game {
   constructor() {
-    Loader.load(imagePath).then(this.setup)
+    Loader.load(imagePath)
+          .on((e:number)=>{console.log(`${e * 100}%`)})
+          .then(this.setup)
   }
 
   private setup(): void {
