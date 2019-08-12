@@ -40,7 +40,7 @@ export default class Chip implements Wrapper{
     this._wrapper.setInteractive(interactive)
   }
   setRotation(animation: boolean, rotation: number): void {
-    this._wrapper.setRotation(animation, rotation)
+    this._centerWrapper.setRotation(animation, rotation)
   }
   setAlpha(animation: boolean, alpha: number): void {
     this._wrapper.setAlpha(animation, alpha)

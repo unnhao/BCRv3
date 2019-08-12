@@ -7,14 +7,14 @@ export default interface Wrapper {
   /**
    * 座標
    */
-  x: number;
-  y:number
+  readonly x: number;
+  readonly y:number
 
   /**
    * 大小
    */
-  width:number
-  height:number
+  readonly width:number
+  readonly height:number
 
   /**
    * 

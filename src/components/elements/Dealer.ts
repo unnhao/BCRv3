@@ -1,21 +1,19 @@
 import * as PIXI from "pixi.js"
-import Texture from '@/components/atoms/Texture'
+import Sprite from '@/components/atoms/Sprite'
 import WrapperContainer from '@/components/elements/WrapperContainer'
 import Wrapper from '@/components/elements/Wrapper'
 import imagePath from '@/config/imagePath'
 
-export default class Desk implements Wrapper{
+export default class Countdown implements Wrapper {
   private _wrapper: Wrapper
-  private _centerWrapper: Wrapper
+
   constructor() {
     this._wrapper = new WrapperContainer()
-    this._centerWrapper = new WrapperContainer()
-    let _desk = new Texture(imagePath.deskPath)
-    this._centerWrapper.addContainer(_desk.getContainer())
-    this._centerWrapper.getContainer().pivot.set(this._centerWrapper.width/2, this._centerWrapper.height/2)
-    this._centerWrapper.setPosition(false, this._centerWrapper.width/2, this._centerWrapper.height/2)
-    this._wrapper.addChild(this._centerWrapper)
+    let _countdown = new Sprite(imagePath.tablePath, 'dealer')
+    this._wrapper.addContainer(_countdown.getContainer())
   }
+
+  // ============
 
   /**
    * 
@@ -26,13 +24,13 @@ export default class Desk implements Wrapper{
   public setPosition(animation: boolean, x: number, y: number) {
     this._wrapper.setPosition(animation, x, y)
   }
-  
+
   /**
    * 設定長寬
    * @param width 寬度
    * @param height 高度
    */
-  public setSize(animation:boolean, width: number, height: number) {
+  public setSize(animation: boolean, width: number, height: number) {
     this._wrapper.setSize(animation, width, height)
   }
 
@@ -49,10 +47,10 @@ export default class Desk implements Wrapper{
   }
 
   public setScale(animation: boolean, scale_x: number, scale_y: number): void {
-    this._centerWrapper.setScale(animation, scale_x, scale_y)
+    this._wrapper.setScale(animation, scale_x, scale_y)
   }
 
-  public setInteractive(interactive: boolean): void{
+  public setInteractive(interactive: boolean): void {
     this._wrapper.setInteractive(interactive)
   }
 
