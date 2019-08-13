@@ -30,22 +30,23 @@ export default class Poker implements Wrapper {
 
     this._wrapper = new WrapperContainer()
 
-    if (config) {
-    this._wrapper.setPosition(false, config.x, config.y)
-    this._wrapper.setScale(false, config.scale, config.scale)
-    this._wrapper.setRotation(false, config.rotation)
-
-    this._wrapper.setPosition(true, 0, 0)
-    this._wrapper.setScale(true, 1, 1)
-    this._wrapper.setRotation(true, 1)
-    }
-
+    
     this._centerWrapper = new WrapperContainer()
     this._centerWrapperFront = new WrapperContainer()
     this._fanPokerWrapper = new WrapperContainer()
     let _sprite = new Sprite(imagePath.pokerPath, pokerType[pokerConfig].type)
     this._centerWrapperFront.addContainer(new Sprite(imagePath.pokerPath, 'front').getContainer())
 
+    if (config) {
+      this._wrapper.setPosition(false, config.x, config.y)
+      this._centerWrapper.setScale(false, config.scale, config.scale)
+      this._centerWrapper.setRotation(false, config.rotation)
+
+      this._wrapper.setPosition(true, 0, 0)
+      this._centerWrapper.setScale(true, 1, 1)
+      this._centerWrapper.setRotation(true, 0)
+    }
+    
     this.drawNumIcon()
     if (['J', 'Q', 'K'].includes(this._pokerValue)) { this.drawJQKIcon() }
 
@@ -140,13 +141,11 @@ export default class Poker implements Wrapper {
   public filpPoker(): void {
     this._status = !this._status
     if (this._status) {
-      console.log('true')
       setTimeout(() => {
         this._centerWrapperFront.setScale(true, 1, 1)
       }, 350)
       this._centerWrapperBack.setScale(true, 0, 1)
     } else {
-      console.log('false')
       setTimeout(() => {
         this._centerWrapperBack.setScale(true, 1, 1)
       }, 350)
@@ -192,6 +191,30 @@ export default class Poker implements Wrapper {
     }
   }
 
+  public getPoint(): number {
+    
+    interface pokerListType {
+       [key: string]: number;
+    } 
+
+    let pokerList:pokerListType = {
+      'A': 1,
+      '2': 2,
+      '3': 3,
+      '4': 4,
+      '5': 5,
+      '6': 6,
+      '7': 7,
+      '8': 8,
+      '9': 9,
+      '10': 10,
+      'J': 11,
+      'Q': 12,
+      'K': 13,
+    }
+    
+    return pokerList[this._pokerValue]
+  }
   // =====
   setPosition(animation: boolean, x: number, y: number): void {
     this._wrapper.setPosition(animation, x, y)
