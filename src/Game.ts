@@ -4,9 +4,9 @@ import imagePath from '@/config/imagePath'
 import pokerType from '@/config/pokerType'
 
 // test
-import CountdownNumber from '@/components/elements/CountdownNumber'
+import Bg from '@/components/elements/Bg'
 import WrapperContainer from '@/components/elements/WrapperContainer'
-import Poker from './components/elements/Poker';
+import PokerPoint from './components/elements/PokerPoint';
 
 export default class Game {
   constructor() {
@@ -23,18 +23,9 @@ export default class Game {
     let n = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 
     let game = new WrapperContainer()
-    // setInterval(()=>{
-    //     let p = new Poker(i[getRandom(0,3)], n[getRandom(0,12)])
-    //     p.setPosition(true, getRandom(0, app.view.width), getRandom(0, app.view.height))
-    //     p.setRotation(true, Math.PI * getRandom(0, 2))
-    //     game.addChild(p)
-    // }, 200)
-    let poker = new Poker('Plum','Q')
-    game.addChild(poker)
-    setInterval(()=>{
-      // poker.filpPoker()
-      poker.setRotation(true, Math.PI * 1)
-    },2000)
+    let pp = new PokerPoint(7)
+    let bg = new Bg()
+    game.addChild(bg)
     app.stage.addChild(game.getContainer())
   }
 }
