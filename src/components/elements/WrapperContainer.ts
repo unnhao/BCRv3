@@ -42,7 +42,7 @@ export default class WrapperContainer implements Wrapper{
    * 添加Container到此Wrapper內
    * @param child 要添加的
    */
-  public addChild(child: Wrapper) {
+  public addChild(child: Wrapper): Wrapper {
     this._container.addChild(child.getContainer())
     return this
   }
@@ -51,7 +51,7 @@ export default class WrapperContainer implements Wrapper{
    * 添加Container到此Wrapper內
    * @param child 要添加的
    */
-  public addContainer(obj:any) {
+  public addContainer(obj:any):Wrapper {
     this._container.addChild(obj)
     return this
   }

@@ -1,4 +1,5 @@
 export default {
+    'winnerPath': './assets/winner/spritesheet.json',
     'bombPath': './assets/bomb/spritesheet.json',
     'chipPath': './assets/chips/spritesheet.json',
     'tablePath':'./assets/table/spritesheet.json',
