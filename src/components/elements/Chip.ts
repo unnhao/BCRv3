@@ -7,9 +7,11 @@ import imagePath from '@/config/imagePath'
 export default class Chip implements Wrapper{
   private _wrapper: Wrapper
   private _centerWrapper: Wrapper
+  private _value: string
   constructor (value:keyof typeof chipType) {
     this._wrapper = new WrapperContainer()
     this._centerWrapper = new WrapperContainer()
+    this._value = value
     let _sprite = new Sprite(imagePath.chipPath, chipType[value].type)
     // scale置中
     this._centerWrapper.addContainer(_sprite.getContainer())
@@ -17,6 +19,13 @@ export default class Chip implements Wrapper{
     this._centerWrapper.setPosition(false, this._centerWrapper.width / 2, this._centerWrapper.height / 2)
     this._wrapper.addChild(this._centerWrapper)
   }
+
+  public getValue(): string{
+    return this._value
+  }
+
+  // ====
+
   setPosition(animation: boolean, x: number, y: number): void {
     this._wrapper.setPosition(animation, x, y)
   }

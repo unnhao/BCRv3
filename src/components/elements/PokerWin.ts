@@ -36,17 +36,17 @@ export default class Countdown implements Wrapper {
 
     let r = Math.PI * 0
     let b = 0.2
-    setInterval(() => {
-      r += Math.PI * 0.1
-      this._bgCircle.setRotation(true, r)
-      if (this._star.getContainer().alpha <= 0) {
-        b=0.2
-      } 
-      if (this._star.getContainer().alpha >= 1) {
-        b=-0.2
-      }
-      this._star.setAlpha(true, this._star.getContainer().alpha+=b)
-    }, 300)
+    // setInterval(() => {
+    //   r += Math.PI * 0.1
+    //   this._bgCircle.setRotation(true, r)
+    //   if (this._star.getContainer().alpha <= 0) {
+    //     b=0.2
+    //   } 
+    //   if (this._star.getContainer().alpha >= 1) {
+    //     b=-0.2
+    //   }
+    //   this._star.setAlpha(true, this._star.getContainer().alpha+=b)
+    // }, 300)
   }
 
   // private rotateCircle() {
