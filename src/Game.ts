@@ -7,10 +7,13 @@ import pokerType from '@/config/pokerType'
 // import Bg from '@/components/elements/Bg'
 import WrapperContainer from '@/components/elements/WrapperContainer'
 import PokerPoint from './components/elements/PokerPoint'
-import PokerGroups from '@/components/groups/PokerGroups'
+import PokerGroup from '@/components/groups/PokerGroup'
 import PokerWin from '@/components/elements/PokerWin'
 import dat from 'dat.gui'
 import Poker from './components/elements/Poker';
+import TableGroup from './components/groups/TableGroup';
+import ChipGroup from './components/groups/ChipGroup';
+import Bg from './components/elements/Bg';
 
 export default class Game {
   constructor() {
@@ -27,11 +30,23 @@ export default class Game {
     let n = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 
     let game = new WrapperContainer()
-    // let pp = new PokerPoint(7)
-    // let pokerGroups = new PokerGroups()
-    // game.addChild(pokerGroups)
-    let pw = new PokerWin()
-    game.addChild(pw)
+    let bg = new Bg()
+    let pp = new PokerPoint(7)
+    let tableGroup = new TableGroup()
+    tableGroup.setPosition(false, 0, 0)
+    tableGroup.setSize(false, 1625, tableGroup.height)
+    game.addChild(bg)
+    
+    bg.setSize(false, 1950, 900)
+    bg.setPosition(false, -162.5, 0)
+
+    let chipGroup = new ChipGroup()
+
+    game.addChild(tableGroup)
+    game.addChild(chipGroup)
+    // tableGroup.setPosition(false, )
+    // let pw = new PokerWin()
+    // game.addChild(pw)
     // // dat gui
     // let setting = {
     //   message : 'dat.gui',
@@ -42,6 +57,9 @@ export default class Game {
     //   },
     //   DISPLAY_SCORE: () => {
     //     pokerGroups.displayPokerPoint()
+    //   },
+    //   DISPLAY_WIN: () => {
+    //     pokerGroups.displayWin()
     //   }
     // }
 
@@ -51,6 +69,7 @@ export default class Game {
     // // gui.add(setting, 'displayOutline');
     // gui.add(setting, 'ADDPoker')
     // gui.add(setting, 'DISPLAY_SCORE')
+    // gui.add(setting, 'DISPLAY_WIN')
 
     app.stage.addChild(game.getContainer())
   }

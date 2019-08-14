@@ -1,52 +1,40 @@
 import * as PIXI from "pixi.js"
-import Texture from '@/components/atoms/Texture'
 import WrapperContainer from '@/components/elements/WrapperContainer'
 import Wrapper from '@/components/elements/Wrapper'
 import Poker from '@/components/elements/Poker'
 import PokerPoint from '@/components/elements/PokerPoint'
-import imagePath from '@/config/imagePath'
+import PokerWin from '@/components/elements/PokerWin'
+import dat from 'dat.gui'
 
 export default class PokerGroups implements Wrapper{
   private _wrapper: Wrapper
   private _centerWrapper: Wrapper
   private _pokerWrapper:　Wrapper
   private _pokerPointWrapper:　Wrapper
+  private _pokerWinWrapper: Wrapper
   private _pokerList: Array<Poker> = []
   constructor() {
     this._wrapper = new WrapperContainer()
     this._centerWrapper = new WrapperContainer()
     this._pokerWrapper = new WrapperContainer()
     this._pokerPointWrapper = new WrapperContainer()
+    this._pokerWinWrapper = new WrapperContainer()
 
     this._centerWrapper.addChild(this._pokerWrapper)
     this._centerWrapper.addChild(this._pokerPointWrapper)
-
+    this._centerWrapper.addChild(this._pokerWinWrapper)
     // 500
     this._centerWrapper.getContainer().pivot.set(this._centerWrapper.width/2, this._centerWrapper.height/2)
     this._centerWrapper.setPosition(false, this._centerWrapper.width/2, this._centerWrapper.height/2)
     this._wrapper.addChild(this._centerWrapper)
 
-    // this._pokerList.push(new Poker('Plum','Q'))
-    // this._pokerList.push(new Poker('Diamond','Q'))
-    // this._pokerList.push(new Poker('Spades','Q'))
-
     this.updatePokerPosition()
-
-    // setTimeout(()=>{
-    //   let p = new Poker('Plum','Q',{x: 500, y: 300, rotation: Math.PI * 2, scale: 1})
-    //   this._pokerList.push(p)
-    //   setTimeout(()=>{
-    //     p.fanPoker()
-    //   }, 800)
-    //   this.updatePokerPosition()
-    // },2000)
   }
 
   public addpoker(poker: Poker) {
     this._pokerList.push(poker)
     this.updatePokerPosition()
-    setTimeout(()=> poker.filpPoker(), 2000)
-    // console.log(poker.getPoint())
+    setTimeout(()=> poker.fanPoker(), 2000)
   }
 
   public updatePokerPosition() {
@@ -65,15 +53,14 @@ export default class PokerGroups implements Wrapper{
     }
     score = score % 10
     let point = new PokerPoint(score)
-
-    let graph = new PIXI.Graphics()
-    graph.beginFill(0xff0000)
-    graph.drawRect(0, 0, this._wrapper.width,  this._wrapper.height)
-    graph.endFill()
     this._pokerPointWrapper.addChild(point)
-    // this._pokerPointWrapper.addContainer(graph)
-    console.log(this._wrapper.width)
-    point.setPosition(false, this._wrapper.width - point.width , this._wrapper.height)
+    point.setPosition(false, -15 , 160)
+  }
+
+  public displayWin() {
+    let win = new PokerWin()
+    this._pokerWinWrapper.addChild(win)
+    win.setPosition(false , -80, -138)
   }
 
   // update Position
