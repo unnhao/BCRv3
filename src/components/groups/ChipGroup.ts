@@ -23,7 +23,7 @@ export default class PokerGroups implements Wrapper{
 
     // 排列籌碼
     for(let i in this._chipList){
-      this._chipList[i].setPosition(false, Number(i) * this._chipList[i].width * 1.1, 0)
+      this._chipList[i].setPosition(false, Number(i) * this._chipList[i].width * 1.05, 0)
     }
 
     // 500

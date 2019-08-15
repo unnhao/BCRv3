@@ -11,6 +11,8 @@ import Chip from '@/components/elements/Chip'
 import Dealer from '@/components/elements/Dealer'
 import Countdown from '@/components/elements/Countdown'
 import imagePath from '@/config/imagePath'
+import tableChips from '@/config/tableChips'
+import {getRandom} from '@/utils/tools'
 import dat from 'dat.gui'
 
 export default class TableGroup implements Wrapper {
@@ -29,6 +31,7 @@ export default class TableGroup implements Wrapper {
   private _countdown: Wrapper
   private _chipsWrapper: Wrapper
 
+  private _chips: Array<Chip> = []
   private _playerpair_chips: Array<Chip> = []
   private _playerking_chips: Array<Chip> = []
   private _tiepair_chips: Array<Chip> = []
@@ -71,12 +74,12 @@ export default class TableGroup implements Wrapper {
     this._centerWrapper.getContainer().pivot.set(this._centerWrapper.width / 2, this._centerWrapper.height / 2)
     this._centerWrapper.setPosition(false, this._centerWrapper.width / 2, this._centerWrapper.height / 2)
 
-    let maskGraphic = new PIXI.Graphics()
-    maskGraphic.beginFill(0xff0000)
-    maskGraphic.alpha = 0
-    maskGraphic.drawRect(0, 0, 1625, 900)
-    maskGraphic.endFill()
-    this._wrapper.addContainer(maskGraphic)
+    // let maskGraphic = new PIXI.Graphics()
+    // maskGraphic.beginFill(0xff0000)
+    // maskGraphic.alpha = 0
+    // maskGraphic.drawRect(0, 0, 1625, 900)
+    // maskGraphic.endFill()
+    // this._wrapper.addContainer(maskGraphic)
     this._wrapper.addChild(this._centerWrapper)
     this.initPosition()
     this.initHover()
@@ -161,7 +164,6 @@ export default class TableGroup implements Wrapper {
 
 // 這邊是對外傳送方法觸發 會在Controller進行store dispatch
   private events:{ [s: string]: Array<Function> } = {}
-
   private deskHoverClick(deskHover: DeskHover) {
     let triggerListener = (arr: Array<Function>) => {
       if (!arr) return
@@ -180,19 +182,34 @@ export default class TableGroup implements Wrapper {
   }
   // 其他CHIPS操作
   private payout(c: Chip) {
+    this._chips.push(c)
     this._chipsWrapper.addChild(c)
   }
-  public userPayout() {
+
+  public userPayout(type: keyof typeof tableChips) {
     let chip = new Chip('1000', 'user')
-    chip.setPosition(true, 100, 200)
     chip.setPosition(false, 500, 600)
+    chip.setSize(false, 30, 30)
+    chip.setPosition(true, tableChips[type].x  + getRandom(-tableChips[type].xoff, tableChips[type].xoff), tableChips[type].y + getRandom(-tableChips[type].yoff, tableChips[type].yoff))
     this.payout(chip)
   }
 
-  public strangerPayout() {
-
+  public strangerPayout(type: keyof typeof tableChips) {
+    let chip = new Chip('1000', 'stranger')
+    chip.setPosition(false, 0, 0)
+    chip.setSize(false, 30, 30)
+    chip.setPosition(true, tableChips[type].x  + getRandom(-tableChips[type].xoff, tableChips[type].xoff), tableChips[type].y + getRandom(-tableChips[type].yoff, tableChips[type].yoff))
+    this.payout(chip)
   }
 
+  public resetStrangerChips() {
+  }
+
+  public resetUserChips() {
+    for(let c of this._chips){
+      if (c.getRole() === 'user') c.setPosition(true, 500, 600)
+    }
+  }
 
 
 
