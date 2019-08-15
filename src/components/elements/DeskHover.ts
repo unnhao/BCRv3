@@ -2,10 +2,9 @@ import * as PIXI from "pixi.js"
 import Sprite from '@/components/atoms/Sprite'
 import WrapperContainer from '@/components/elements/WrapperContainer'
 import Wrapper from '@/components/elements/Wrapper'
-import CountdownNumber from '@/components/elements/CountdownNumber'
 import imagePath from '@/config/imagePath'
 
-export default class Countdown implements Wrapper {
+export default class DeskHover implements Wrapper {
   private _wrapper: Wrapper
   private _hoveArea: PIXI.Graphics
   private _type: string
