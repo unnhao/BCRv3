@@ -16,7 +16,7 @@ export default class PokerGroups implements Wrapper{
 
     // 放入籌碼
     for(let v in chipType){
-      let chip = new Chip(v as keyof typeof chipType)
+      let chip = new Chip(v as keyof typeof chipType, 'me')
       this._centerWrapper.addChild(chip)
       this._chipList.push(chip)
     }

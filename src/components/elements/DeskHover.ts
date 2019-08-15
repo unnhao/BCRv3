@@ -20,6 +20,10 @@ export default class DeskHover implements Wrapper {
     this.setInteractive(true)
   }
 
+  public getType(): string {
+    return this._type
+  }
+
   private drawHover() {
     switch (this._type) {
       case 'playerpair':

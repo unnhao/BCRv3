@@ -10,17 +10,16 @@ import PokerPoint from './components/elements/PokerPoint'
 import PokerGroup from '@/components/groups/PokerGroup'
 import PokerWin from '@/components/elements/PokerWin'
 import dat from 'dat.gui'
-import Poker from './components/elements/Poker'
-import TableGroup from './components/groups/TableGroup'
-import ChipGroup from './components/groups/ChipGroup'
-import Bg from './components/elements/Bg'
-import Chip from './components/elements/Chip'
+import Poker from './components/elements/Poker';
+import TableGroup from './components/groups/TableGroup';
+import ChipGroup from './components/groups/ChipGroup';
+import Bg from './components/elements/Bg';
 
 export default class Game {
   constructor() {
     Loader.load(imagePath)
-      .on((e: number) => { console.log(`${e * 100}%`) })
-      .then(this.setup)
+          .on((e:number)=>{console.log(`${e * 100}%`)})
+          .then(this.setup)
   }
 
   private setup(): void {
@@ -36,13 +35,16 @@ export default class Game {
     let tableGroup = new TableGroup()
     tableGroup.setPosition(false, 0, 0)
     tableGroup.setSize(false, 1625, tableGroup.height)
+    tableGroup.onPayout('player', ()=>{
+      
+    })
     game.addChild(bg)
     
     bg.setSize(false, 1950, 900)
     bg.setPosition(false, -162.5, 0)
 
     let chipGroup = new ChipGroup()
-
+    
     game.addChild(tableGroup)
     game.addChild(chipGroup)
     // tableGroup.setPosition(false, )
@@ -63,59 +65,6 @@ export default class Game {
     //     pokerGroups.displayWin()
     //   }
     // }
-    let c: Array<keyof typeof chipType> = ['1000', '10000', '100000', '1000000', '10000000', '5000000']
-
-    let chipsArray: any = []
-    for (let i = 0; i < 100; i++) {
-      let chip = new Chip(c[getRandom(0, 5)])
-      chipsArray.push(chip)
-      game.addChild(chip)
-      chip.setPosition(true, 200 + getRandom(0, 300), 200 + getRandom(0, 200))
-      chip.setScale(true, 0.75, 0.75)
-    }
-
-    // sort ---
-    chipsArray.sort((a:Chip, b:Chip) => {
-      return Number(b.getValue()) - Number(a.getValue())
-    })
-
-    let iwantnum = 0
-    for (let i = 0; i < 15; i++) {
-      iwantnum += Number(chipsArray[getRandom(0, chipsArray.length - 1)].getValue())
-    }
-    console.log(iwantnum)
-
-    let getArr:any = []
-    for(let i in chipsArray){
-      console.log(`iwantnum: ${iwantnum} ->> chipsArray[${i}]: ${Number(chipsArray[i].getValue())}`)
-      if (iwantnum >= Number(chipsArray[i].getValue())){
-        iwantnum-= Number(chipsArray[i].getValue())
-        getArr.push(chipsArray[i])
-        chipsArray.splice(i, 1)
-      }
-    }
-    let getNum = 0
-    for(let i in getArr){
-      getNum+= Number(getArr[i].getValue())
-    }
-    console.log(getNum)
-    setTimeout(()=>{
-      for(let i in getArr){
-        getArr[i].setPosition(true, 800 +getRandom(0, 200), 500+getRandom(0, 200))
-      }
-    },2000)
-    // console.log(iwantnum - getNum)
-    
-
-
-    // let res = 0
-    // let sort = {}
-    // for (let c in chipsArray) {
-
-    //   console.log(chipsArray[c].getValue())
-    //   res += Number(chipsArray[c].getValue())
-    // }
-    // console.log(res)
 
     // const gui = new dat.GUI()
     // gui.add(setting, 'message')
@@ -124,10 +73,6 @@ export default class Game {
     // gui.add(setting, 'ADDPoker')
     // gui.add(setting, 'DISPLAY_SCORE')
     // gui.add(setting, 'DISPLAY_WIN')
-
-    // var list = {"you": 100, "me": 75, "foo": 116, "bar": 15};
-    // keysSorted = Object.keys(list).sort(function(a,b){return list[a]-list[b]})
-    // console.log(keysSorted);  
 
     app.stage.addChild(game.getContainer())
   }

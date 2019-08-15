@@ -8,10 +8,13 @@ export default class Chip implements Wrapper{
   private _wrapper: Wrapper
   private _centerWrapper: Wrapper
   private _value: string
-  constructor (value:keyof typeof chipType) {
+  private _role: string
+
+  constructor (value:keyof typeof chipType, role: string) {
     this._wrapper = new WrapperContainer()
     this._centerWrapper = new WrapperContainer()
     this._value = value
+    this._role = role
     let _sprite = new Sprite(imagePath.chipPath, chipType[value].type)
     // scale置中
     this._centerWrapper.addContainer(_sprite.getContainer())
@@ -22,6 +25,14 @@ export default class Chip implements Wrapper{
 
   public getValue(): string{
     return this._value
+  }
+
+  public getRole(): string{
+    return this._role
+  }
+
+  public setRole(r: string) {
+    this._role = r
   }
 
   // ====

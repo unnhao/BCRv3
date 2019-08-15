@@ -7,25 +7,37 @@ import PokerPoint from '@/components/elements/PokerPoint'
 import PokerWin from '@/components/elements/PokerWin'
 import Desk from '@/components/elements/Desk'
 import DeskHover from '@/components/elements/DeskHover'
+import Chip from '@/components/elements/Chip'
 import Dealer from '@/components/elements/Dealer'
 import Countdown from '@/components/elements/Countdown'
 import imagePath from '@/config/imagePath'
 import dat from 'dat.gui'
 
-export default class TableGroup implements Wrapper{
-    private _wrapper: Wrapper
-    private _centerWrapper: Wrapper
-    private _desk: Desk
-    private _deskHover_playerpair: Wrapper
-    private _deskHover_playerking: Wrapper
-    private _deskHover_tiepair: Wrapper
-    private _deskHover_tie: Wrapper
-    private _deskHover_bankerking: Wrapper
-    private _deskHover_banker: Wrapper
-    private _deskHover_bankerpair: Wrapper
-    private _deskHover_player: Wrapper
-    private _dealer: Wrapper
-    private _countdown: Wrapper
+export default class TableGroup implements Wrapper {
+  private _wrapper: Wrapper
+  private _centerWrapper: Wrapper
+  private _desk: Desk
+  private _deskHover_playerpair: DeskHover
+  private _deskHover_playerking: DeskHover
+  private _deskHover_tiepair: DeskHover
+  private _deskHover_tie: DeskHover
+  private _deskHover_bankerking: DeskHover
+  private _deskHover_banker: DeskHover
+  private _deskHover_bankerpair: DeskHover
+  private _deskHover_player: DeskHover
+  private _dealer: Wrapper
+  private _countdown: Wrapper
+  private _chipsWrapper: Wrapper
+
+  private _playerpair_chips: Array<Chip> = []
+  private _playerking_chips: Array<Chip> = []
+  private _tiepair_chips: Array<Chip> = []
+  private _tie_chips: Array<Chip> = []
+  private _bankerking_chips: Array<Chip> = []
+  private _banker_chips: Array<Chip> = []
+  private _bankerpair_chips: Array<Chip> = []
+  private _player_chips: Array<Chip> = []
+
   constructor() {
     this._wrapper = new WrapperContainer()
     this._centerWrapper = new WrapperContainer()
@@ -41,6 +53,7 @@ export default class TableGroup implements Wrapper{
     this._deskHover_player = new DeskHover('player')
     this._dealer = new WrapperContainer()
     this._countdown = new WrapperContainer()
+    this._chipsWrapper = new WrapperContainer()
 
     this._centerWrapper.addChild(this._desk)
     this._centerWrapper.addChild(this._deskHover_playerpair)
@@ -53,9 +66,10 @@ export default class TableGroup implements Wrapper{
     this._centerWrapper.addChild(this._deskHover_player)
     this._centerWrapper.addChild(this._dealer)
     this._centerWrapper.addChild(this._countdown)
-    
-    this._centerWrapper.getContainer().pivot.set(this._centerWrapper.width/2, this._centerWrapper.height/2)
-    this._centerWrapper.setPosition(false, this._centerWrapper.width/2, this._centerWrapper.height/2)
+    this._centerWrapper.addChild(this._chipsWrapper)
+
+    this._centerWrapper.getContainer().pivot.set(this._centerWrapper.width / 2, this._centerWrapper.height / 2)
+    this._centerWrapper.setPosition(false, this._centerWrapper.width / 2, this._centerWrapper.height / 2)
 
     let maskGraphic = new PIXI.Graphics()
     maskGraphic.beginFill(0xff0000)
@@ -71,36 +85,36 @@ export default class TableGroup implements Wrapper{
   private initPosition() {
     let config = {
       'playerpair': {
-          x: 198,
-          y: 52
+        x: 198,
+        y: 52
       },
       'playerking': {
-          x: 345,
-          y: 337
+        x: 345,
+        y: 337
       },
       'tiepair': {
-          x: 639,
-          y: 336
+        x: 639,
+        y: 336
       },
       'tie': {
-          x: 515,
-          y: 149
+        x: 515,
+        y: 149
       },
       'bankerking': {
-          x: 782,
-          y: 337
+        x: 782,
+        y: 337
       },
       'banker': {
-          x: 900,
-          y: 188
+        x: 900,
+        y: 188
       },
       'bankerpair': {
-          x: 854,
-          y: 61
+        x: 854,
+        y: 61
       },
       'player': {
-          x: 122,
-          y: 182
+        x: 122,
+        y: 182
       }
     }
     this._desk.setPosition(true, 0, 0)
@@ -125,19 +139,63 @@ export default class TableGroup implements Wrapper{
     this.settingHover(this._deskHover_player)
   }
 
-  private settingHover(w: Wrapper) {
-    w.setInteractive(true)
-    w.setAlpha(false, 0)
-    w.on('pointerdown', () => {
-      w.setAlpha(true, 1)
+  // 初始化部分
+
+  private settingHover(deskHover: DeskHover) {
+    deskHover.setInteractive(true)
+    deskHover.setAlpha(false, 0)
+    deskHover.on('touchstart', () => this.deskHoverClick(deskHover))
+    deskHover.on('mousedown', () => this.deskHoverClick(deskHover))
+    deskHover.on('pointerdown', () => {
+      deskHover.setAlpha(true, 1)
     })
-    w.on('pointerup', () => {
-      setTimeout(()=> {w.setAlpha(true, 0)}, 150)
+    deskHover.on('pointerup', () => {
+      setTimeout(() => { deskHover.setAlpha(true, 0) }, 150)
     })
-    w.on('pointerout', () => {
-      setTimeout(()=> {w.setAlpha(true, 0)}, 150)
+    deskHover.on('pointerout', () => {
+      setTimeout(() => { deskHover.setAlpha(true, 0) }, 150)
     })
   }
+  
+// 初始化部分
+
+// 這邊是對外傳送方法觸發 會在Controller進行store dispatch
+  private events:{ [s: string]: Array<Function> } = {}
+
+  private deskHoverClick(deskHover: DeskHover) {
+    let triggerListener = (arr: Array<Function>) => {
+      if (!arr) return
+      arr.map(f => f())
+    }
+    triggerListener(this.events[deskHover.getType()])
+  }
+
+  public onPayout(event: string, listener: any) {
+    if (!this.events[event]) {
+      this.events[event] = []
+    }
+    if (this.events[event]) {
+      this.events[event].push(listener)
+    }
+  }
+  // 其他CHIPS操作
+  private payout(c: Chip) {
+    this._chipsWrapper.addChild(c)
+  }
+  public userPayout() {
+    let chip = new Chip('1000', 'user')
+    chip.setPosition(true, 100, 200)
+    chip.setPosition(false, 500, 600)
+    this.payout(chip)
+  }
+
+  public strangerPayout() {
+
+  }
+
+
+
+
   // update Position
   /**
    * 
@@ -148,13 +206,13 @@ export default class TableGroup implements Wrapper{
   public setPosition(animation: boolean, x: number, y: number) {
     this._wrapper.setPosition(animation, x, y)
   }
-  
+
   /**
    * 設定長寬
    * @param width 寬度
    * @param height 高度
    */
-  public setSize(animation:boolean, width: number, height: number) {
+  public setSize(animation: boolean, width: number, height: number) {
     this._wrapper.setSize(animation, width, height)
   }
 
@@ -174,7 +232,7 @@ export default class TableGroup implements Wrapper{
     this._centerWrapper.setScale(animation, scale_x, scale_y)
   }
 
-  public setInteractive(interactive: boolean): void{
+  public setInteractive(interactive: boolean): void {
     this._wrapper.setInteractive(interactive)
   }
 
