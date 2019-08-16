@@ -1,7 +1,7 @@
 import Loader from '@/loaders/Loader'
 import imagePath from '@/config/imagePath'
 import pokerType from '@/config/pokerType'
-
+import '@/mock/core'
 import WrapperContainer from '@/components/elements/WrapperContainer'
 import GameController from '@/controllers/GameController'
 
