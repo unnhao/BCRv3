@@ -2,9 +2,6 @@ import * as PIXI from "pixi.js"
 import WrapperContainer from '@/components/elements/WrapperContainer'
 import WrapperContainerCenter from '@/components/elements/WrapperContainerCenter'
 import Wrapper from '@/components/elements/Wrapper'
-import Poker from '@/components/elements/Poker'
-import PokerPoint from '@/components/elements/PokerPoint'
-import PokerWin from '@/components/elements/PokerWin'
 import Desk from '@/components/elements/Desk'
 import DeskHover from '@/components/elements/DeskHover'
 import Chip from '@/components/elements/Chip'
@@ -162,6 +159,61 @@ export default class TableGroup implements Wrapper {
   
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // 取得該type的array
   private getTypeArray(t: keyof typeof tableChips): Array<Chip>{
     switch (t) {
@@ -238,11 +290,6 @@ export default class TableGroup implements Wrapper {
     }
   }
 
-
-
-
-
-
   // 退回籌碼看是誰的
   private sendBack(chip: Chip) {
     if (chip.getRole() === 'user') { chip.setPosition(true, tableChipsPosition.user.x, tableChipsPosition.user.y) }
@@ -254,19 +301,6 @@ export default class TableGroup implements Wrapper {
       role === arr[i].getRole() ? this.sendBack(arr[i]) : ''
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // 這邊是對外傳送方法觸發 會在Controller進行store dispatch
 private events:{ [s: string]: Array<Function> } = {}
