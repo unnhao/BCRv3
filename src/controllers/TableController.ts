@@ -10,60 +10,63 @@ export default class TableController {
     this.tableGroup.setPosition(false, 1625 / 2 - 737, 0)
     this.tableGroup.setPosition(true, 1625 / 2 - 737, 200)
 
-    
+
     let setting = {
-      message : 'dat.gui',
-      userPlayerpairPayout : () => {
+      message: 'dat.gui',
+      userPlayerpairPayout: () => {
         this.userPayout('playerpair')
       },
-      userPlayerkingPayout : () => {
+      userPlayerkingPayout: () => {
         this.userPayout('playerking')
       },
-      userTiepairPayout : () => {
+      userTiepairPayout: () => {
         this.userPayout('tiepair')
       },
-      userTiePayout : () => {
+      userTiePayout: () => {
         this.userPayout('tie')
       },
-      userBankerkingPayout : () => {
+      userBankerkingPayout: () => {
         this.userPayout('bankerking')
       },
-      userBankerPayout : () => {
+      userBankerPayout: () => {
         this.userPayout('banker')
       },
-      userBankerpairPayout : () => {
+      userBankerpairPayout: () => {
         this.userPayout('bankerpair')
       },
-      userPlayerPayout : () => {
+      userPlayerPayout: () => {
         this.userPayout('player')
       },
       // 
-      strangerPlayerpairPayout : () => {
+      strangerPlayerpairPayout: () => {
         this.strangerPayout('playerpair')
       },
-      strangerPlayerkingPayout : () => {
+      strangerPlayerkingPayout: () => {
         this.strangerPayout('playerking')
       },
-      strangerTiepairPayout : () => {
+      strangerTiepairPayout: () => {
         this.strangerPayout('tiepair')
       },
-      strangerTiePayout : () => {
+      strangerTiePayout: () => {
         this.strangerPayout('tie')
       },
-      strangerBankerkingPayout : () => {
+      strangerBankerkingPayout: () => {
         this.strangerPayout('bankerking')
       },
-      strangerBankerPayout : () => {
+      strangerBankerPayout: () => {
         this.strangerPayout('banker')
       },
-      strangerBankerpairPayout : () => {
+      strangerBankerpairPayout: () => {
         this.strangerPayout('bankerpair')
       },
-      strangerPlayerPayout : () => {
+      strangerPlayerPayout: () => {
         this.strangerPayout('player')
       },
-      resetUserChips: () => {
-        this.resetUserChips()
+      sysSendChips: () => {
+        this.sysSendChips()
+      },
+      restPlayerUserChip: () => {
+        this.restPlayerUserChip()
       }
     }
 
@@ -87,66 +90,67 @@ export default class TableController {
     gui.add(setting, 'strangerBankerpairPayout')
     gui.add(setting, 'strangerPlayerPayout')
     // 
-    gui.add(setting, 'resetUserChips')
+    gui.add(setting, 'sysSendChips')
+    gui.add(setting, 'restPlayerUserChip')
   }
-
+  // 試想一下會有的狀況
+  // 輸的時候把輸的區域的籌碼
   // 玩家下注
   public userPayout(type: string) {
     switch (type) {
-      case 'playerpair': 
-        this.tableGroup.userPayout('playerpair')
+      case 'playerpair':
+        this.tableGroup.userPayout('10000','playerpair')
         break
       case 'playerking':
-        this.tableGroup.userPayout('playerking')
+        this.tableGroup.userPayout('10000', 'playerking')
         break
       case 'tiepair':
-        this.tableGroup.userPayout('tiepair')
+        this.tableGroup.userPayout('10000', 'tiepair')
         break
       case 'tie':
-        this.tableGroup.userPayout('tie')
+        this.tableGroup.userPayout('10000', 'tie')
         break
       case 'bankerking':
-        this.tableGroup.userPayout('bankerking')
+        this.tableGroup.userPayout('10000', 'bankerking')
         break
       case 'banker':
-        this.tableGroup.userPayout('banker')
+        this.tableGroup.userPayout('10000', 'banker')
         break
       case 'bankerpair':
-        this.tableGroup.userPayout('bankerpair')
+        this.tableGroup.userPayout('10000', 'bankerpair')
         break
       case 'player':
-        this.tableGroup.userPayout('player')
+        this.tableGroup.userPayout('10000', 'player')
         break
     }
   }
-  // strangerPayout
 
   // 其他人下注
   public strangerPayout(type: string) {
     switch (type) {
-      case 'playerpair': 
-        this.tableGroup.strangerPayout('playerpair')
+      case 'playerpair':
+        this.tableGroup.strangerPayout('10000', 'playerpair')
         break
       case 'playerking':
-        this.tableGroup.strangerPayout('playerking')
+        this.tableGroup.strangerPayout('10000', 'playerking')
         break
       case 'tiepair':
-        this.tableGroup.strangerPayout('tiepair')
+        this.tableGroup.strangerPayout('10000', 'tiepair')
         break
       case 'tie':
-        this.tableGroup.strangerPayout('tie')
+        this.tableGroup.strangerPayout('10000', 'tie')
         break
       case 'bankerking':
-        this.tableGroup.strangerPayout('bankerking')
+        this.tableGroup.strangerPayout('10000', 'bankerking')
         break
       case 'banker':
-        this.tableGroup.strangerPayout('banker')
+        this.tableGroup.strangerPayout('10000', 'banker')
         break
       case 'bankerpair':
-        this.tableGroup.strangerPayout('bankerpair')
+        this.tableGroup.strangerPayout('10000', 'bankerpair')
         break
       case 'player':
-        this.tableGroup.strangerPayout('player')
+        this.tableGroup.strangerPayout('10000', 'player')
         break
     }
   }
@@ -162,13 +166,13 @@ export default class TableController {
   }
 
   // 退回所有Chips
-  public reseTableChips() {
-
+  public restPlayerUserChip() {
+    this.tableGroup.sendBackChips('player', 'user')
   }
 
-  // 退回所有user Chips
-  public resetUserChips() {
-    this.tableGroup.resetUserChips()
+  // sysSendChips
+  public sysSendChips() {
+    this.tableGroup.bcpSendValue(52300, 'player', 'user')
   }
 
   // 退回所以其他人的 Chips

@@ -1,7 +1,15 @@
 export default class Store {
   private subs: Array<Function> = []
   private store: any = {
-    'chipStatus' : '1000'
+    'chipStatus' : '1000',
+    'banker': 0,
+    'bankerking': 0,
+    'bankerpair': 0,
+    'player': 0,
+    'playerking': 0,
+    'playerpair': 0,
+    'tie': 0,
+    'tiepair': 0
   }
   constructor() {}
 
