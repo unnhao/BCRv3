@@ -1,5 +1,5 @@
 export default {
-    user: { x: 300, y: 600 },
+    user: { x: 1650 /2 , y: 600 },
     stranger: { x: 30, y: 100 },
-    bcp: { x: 300, y: 20 }
+    bcp: { x: 1000, y: 20 }
 }

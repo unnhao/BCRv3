@@ -10,6 +10,9 @@ export default class Countdown implements Wrapper{
   private _countdownNumber: Wrapper
   private _countdownTimer: number = 30
   private _countdownStatus: Wrapper
+  private _countdownStatus_beting: Wrapper
+  private _countdownStatus_paying: Wrapper
+
   private _timeout: any
   private _status: string = 'Beting' // 'Beting' || 'Paying'
   private _ontimeup: Function = () => {}
@@ -22,19 +25,32 @@ export default class Countdown implements Wrapper{
     this._countdownNumber = new WrapperContainer(new CountdownNumber(this._countdownTimer))
 
     this._countdownStatus = new WrapperContainer()
+    this._countdownStatus_beting = new WrapperContainer()
+    this._countdownStatus_paying = new WrapperContainer()
 
     this._wrapper.addContainer(_countdown.getContainer())
     this._wrapper.addChild(this._countdownNumber)
     this._wrapper.addChild(this._countdownStatus)
     
     this._countdownNumber.setPosition(false, this._wrapper.width / 2 - this._countdownNumber.width / 2, this._wrapper.height / 2)
-    this._countdownStatus.addContainer(new Sprite(imagePath.tablePath, `countdown${this._status}`).getContainer())
-    this._countdownStatus.setPosition(false, this._wrapper.width / 2 - this._countdownStatus.width / 2, 15)
+    this._countdownStatus.addChild(this._countdownStatus_beting)
+    // this._countdownStatus.addChild(this._countdownStatus_paying)
+
+    this._countdownStatus_beting.addContainer(new Sprite(imagePath.tablePath, `countdownBeting`).getContainer())
+    this._countdownStatus_beting.setPosition(false, this._wrapper.width / 2 - this._countdownStatus_beting.width / 2 , 15)
+    this._countdownStatus_paying.addContainer(new Sprite(imagePath.tablePath, `countdownPaying`).getContainer())
+    this._countdownStatus_paying.setPosition(false, this._wrapper.width / 2 - this._countdownStatus_paying.width / 2 , 20)
   }
+
   
   public setStatus(status: string) {
     this._countdownStatus.removeChildren()
-    this._countdownStatus.addContainer(new Sprite(imagePath.tablePath, `countdown${this._status}`).getContainer())
+    if (status === 'Paying') {
+      this._countdownStatus.addChild(this._countdownStatus_paying)
+    }
+    if (status === 'Beting') {
+      this._countdownStatus.addChild(this._countdownStatus_beting)
+    }
     this._status = status
   }
 
@@ -46,10 +62,19 @@ export default class Countdown implements Wrapper{
   }
 
   private countdown() {
+    if (this._timeout) {
+      clearTimeout(this._timeout)
+      this._timeout = null
+    }
     this._timeout = setTimeout(() => {
       this._countdownTimer--
       this.setCountdownTimer(this._countdownTimer)
-      if (this._countdownTimer < 0) { return this._ontimeup() }
+      if (this._countdownTimer < 0) { 
+        this._countdownTimer = 0
+        clearTimeout(this._timeout)
+        this._timeout = null
+        return this._ontimeup() 
+      }
       this.countdown()
     }, 1000)
   }

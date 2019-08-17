@@ -27,7 +27,7 @@ export default class TableGroup implements Wrapper {
   private _deskHover_bankerpair: DeskHover
   private _deskHover_player: DeskHover
   private _dealer: Wrapper
-  private _countdown: Wrapper
+  private _countdown: Countdown
   private _chipsWrapper: Wrapper
 
   private _playerpair_chips: Array<Chip> = []
@@ -52,8 +52,8 @@ export default class TableGroup implements Wrapper {
     this._deskHover_banker = new DeskHover('banker')
     this._deskHover_bankerpair = new DeskHover('bankerpair')
     this._deskHover_player = new DeskHover('player')
-    this._dealer = new WrapperContainer()
-    this._countdown = new WrapperContainer()
+    this._dealer = new Dealer()
+    this._countdown = new Countdown()
     this._chipsWrapper = new WrapperContainer()
 
     this._centerWrapper.addChild(this._desk)
@@ -65,8 +65,8 @@ export default class TableGroup implements Wrapper {
     this._centerWrapper.addChild(this._deskHover_banker)
     this._centerWrapper.addChild(this._deskHover_bankerpair)
     this._centerWrapper.addChild(this._deskHover_player)
-    this._centerWrapper.addChild(this._dealer)
-    this._centerWrapper.addChild(this._countdown)
+    this._centerWrapper.addContainer(this._dealer.getContainer())
+    this._centerWrapper.addContainer(this._countdown.getContainer())
     this._centerWrapper.addChild(this._chipsWrapper)
 
     this._centerWrapper.getContainer().pivot.set(this._centerWrapper.width / 2, this._centerWrapper.height / 2)
@@ -79,11 +79,11 @@ export default class TableGroup implements Wrapper {
     // maskGraphic.endFill()
     // this._wrapper.addContainer(maskGraphic)
     this._wrapper.addChild(this._centerWrapper)
+
     this.initPosition()
     this.initHover()
   }
-  
-  // 初始化部分
+
   private initPosition() {
     let config = {
       'playerpair': {
@@ -128,6 +128,9 @@ export default class TableGroup implements Wrapper {
     this._deskHover_banker.setPosition(false, config['banker'].x, config['banker'].y)
     this._deskHover_bankerpair.setPosition(false, config['bankerpair'].x, config['bankerpair'].y)
     this._deskHover_player.setPosition(false, config['player'].x, config['player'].y)
+
+    this._dealer.setPosition(false, 830, 50)
+    this._countdown.setPosition(false, 590, 45)
   }
 
   private initHover() {
@@ -269,12 +272,15 @@ export default class TableGroup implements Wrapper {
   }
 
   private bcpSendChips(value: keyof typeof chipType, type: keyof typeof tableChips, role: string) {
+    // console.log(`value: ${value}, role: ${role}`)
     let chip = new Chip(value, role)
-    chip.setPosition(false, tableChipsPosition.bcp.x, tableChipsPosition.bcp.y)
+    let _role = role as keyof typeof tableChipsPosition
+    chip.setPosition(false, tableChipsPosition[_role].x, tableChipsPosition[_role].y)
     this.payout(chip, type)
   }
 
-  public bcpSendValue(value: number, type: keyof typeof tableChips, role: string) {
+  public bcrSendValue(value: number, type: keyof typeof tableChips, role: string) {
+    // console.log(`value: ${value}, role: ${role}`)
     let _value = value
     let chipskeys = Object.keys(chipType).reverse()
     let res:{ [s: string]: number } = {}
@@ -286,8 +292,28 @@ export default class TableGroup implements Wrapper {
       alert('some thing wrong')
     }
     for (let i in res) {
-      this.bcpSendChips(i as keyof typeof chipType, type, role)
+      while(res[i] !== 0) {
+        this.bcpSendChips(i as keyof typeof chipType, type, role)
+        --res[i]
+      }
     }
+  }
+
+  public setCountdownTime(t: number) {
+    this._countdown.setCountdownTimer(t)
+  }
+
+  public setCountdownStart() {
+    this._countdown.start()
+  }
+
+  public setCountdownStop() {
+    this._countdown.stop()
+  }
+
+  public setCountdownStatus(s: string) {
+    // Beting Paying
+    this._countdown.setStatus(s)
   }
 
   // 退回籌碼看是誰的

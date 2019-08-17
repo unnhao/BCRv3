@@ -1,7 +1,8 @@
-export default class Store {
+class Store {
   private subs: Array<Function> = []
   private store: any = {
     'chipStatus' : '1000',
+    'money' : 0,
     'banker': 0,
     'bankerking': 0,
     'bankerpair': 0,
@@ -18,8 +19,8 @@ export default class Store {
       case 'UPDATE_CHIP_STATUS':
         this.store.chipStatus = payload
         break
-      case 'UPDATE_CHIP_STATUS':
-        this.store.chipStatus = payload
+      case 'UPDATE_MONEY_STATUS':
+        this.store.money = payload
         break
     }
     this.notify()
@@ -29,11 +30,15 @@ export default class Store {
     this.subs.push(cb)
   }
 
-  public notify() {
-    for (let sub of this.subs) { sub() }
+  private notify() {
+    for (let sub of this.subs) { 
+      sub()
+    }
   }
 
   public getState():any {
     return this.store
   }
 }
+
+export default new Store()

@@ -1,71 +1,45 @@
 import * as PIXI from "pixi.js"
 import WrapperContainer from '@/components/elements/WrapperContainer'
 import Wrapper from '@/components/elements/Wrapper'
-import Poker from '@/components/elements/Poker'
-import PokerPoint from '@/components/elements/PokerPoint'
-import PokerWin from '@/components/elements/PokerWin'
+import Info from '@/components/elements/Info'
+import BetStatusNotify from '@/components/elements/BetStatusNotify'
+import chipType from '@/config/chipType'
 import dat from 'dat.gui'
 
-export default class PokerGroups implements Wrapper{
+export default class InterFaceGroup implements Wrapper{
   private _wrapper: Wrapper
   private _centerWrapper: Wrapper
-  private _pokerWrapper:　Wrapper
-  private _pokerPointWrapper:　Wrapper
-  private _pokerWinWrapper: Wrapper
-  private _pokerList: Array<Poker> = []
-
+  private info: Info
+  private betStatusNotify: BetStatusNotify
   constructor() {
     this._wrapper = new WrapperContainer()
     this._centerWrapper = new WrapperContainer()
-    this._pokerWrapper = new WrapperContainer()
-    this._pokerPointWrapper = new WrapperContainer()
-    this._pokerWinWrapper = new WrapperContainer()
+    this.info = new Info()
+    this.betStatusNotify = new BetStatusNotify()
+    this._centerWrapper.addChild(this.info)
+    this._centerWrapper.addChild(this.betStatusNotify)
 
-    this._centerWrapper.addChild(this._pokerWrapper)
-    this._centerWrapper.addChild(this._pokerPointWrapper)
-    this._centerWrapper.addChild(this._pokerWinWrapper)
-    // 500
+    this.info.setPosition(false, 40 , 900 - this.info.height - 40)
+    this.betStatusNotify.setPosition(false, 1625 / 2 - this.betStatusNotify.width / 2  , 900 / 2 - this.betStatusNotify.height / 2 )
+
     this._centerWrapper.getContainer().pivot.set(this._centerWrapper.width/2, this._centerWrapper.height/2)
     this._centerWrapper.setPosition(false, this._centerWrapper.width/2, this._centerWrapper.height/2)
     this._wrapper.addChild(this._centerWrapper)
-
-    this.updatePokerPosition()
-  }
-  
-  public resetPoker() {
-    this._pokerPointWrapper.removeChildren()
-    this._pokerWinWrapper.removeChildren()
-    this._pokerWrapper.removeChildren()
-    this._pokerList = []
   }
 
-  public addpoker(poker: Poker) {
-    this._pokerList.push(poker)
-    this.updatePokerPosition()
-    setTimeout(()=> poker.fanPoker(), 2000)
+  public startBetNotify() {
+    this.betStatusNotify.displayStartBet()
   }
 
-  public updatePokerPosition() {
-    for (let index in this._pokerList) {
-      let reverseIndex = this._pokerList.length - Number(index)
-      this._pokerWrapper.addChild(this._pokerList[index])
-      this._pokerList[index].setPosition(true, (reverseIndex - 1) * -40, 0)
-    }
+  public endBetNotify() {
+    this.betStatusNotify.displayEndBet()
   }
 
-  public displayPokerPoint(n: number) {
-    this._pokerPointWrapper.removeChildren()
-    let point = new PokerPoint(n)
-    this._pokerPointWrapper.addChild(point)
-    point.setPosition(false, -15 , 160)
+  public updateMoney(number: number) {
+    this.info.updateMoney(number)
   }
 
-  public displayWin() {
-    let win = new PokerWin()
-    this._pokerWinWrapper.addChild(win)
-    win.setPosition(false , -80, -138)
-  }
-
+  // =====
   // update Position
   /**
    * 

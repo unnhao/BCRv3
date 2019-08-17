@@ -10,7 +10,7 @@ export default class Animation {
   constructor(targetsheet: string, target: string) {
     let sheet: any = PIXI.loader.resources[targetsheet].spritesheet
     this._animatedel = new PIXI.extras.AnimatedSprite(sheet.animations[target])
-    this._animatedel.animationSpeed = 0.25
+    this._animatedel.animationSpeed = 0.23
     this._animatedel.loop = false
     this._container = new PIXI.Container()
     this._container.addChild(this._animatedel)

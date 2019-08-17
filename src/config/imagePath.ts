@@ -7,5 +7,6 @@ export default {
     'deskPath' : './assets/table/desk.png',
     'bgPath' : './assets/table/bg.png',
     'pokerPath': './assets/poker/spritesheet.json',
-    'fanpaiPath': './assets/fanpai/spritesheet.json'
+    'fanpaiPath': './assets/fanpai/spritesheet.json',
+    'interfacePath': './assets/interface/spritesheet.json'
 }

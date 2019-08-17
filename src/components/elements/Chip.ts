@@ -7,7 +7,7 @@ import imagePath from '@/config/imagePath'
 export default class Chip implements Wrapper{
   private _wrapper: Wrapper
   private _centerWrapper: Wrapper
-  private _value: string
+  private _value: keyof typeof chipType
   private _role: string
 
   constructor (value:keyof typeof chipType, role: string) {
@@ -23,7 +23,7 @@ export default class Chip implements Wrapper{
     this._wrapper.addChild(this._centerWrapper)
   }
 
-  public getValue(): string{
+  public getValue(): keyof typeof chipType{
     return this._value
   }
 

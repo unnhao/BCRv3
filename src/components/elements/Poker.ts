@@ -30,23 +30,12 @@ export default class Poker implements Wrapper {
 
     this._wrapper = new WrapperContainer()
 
-    
     this._centerWrapper = new WrapperContainer()
     this._centerWrapperFront = new WrapperContainer()
     this._fanPokerWrapper = new WrapperContainer()
     let _sprite = new Sprite(imagePath.pokerPath, pokerType[pokerConfig].type)
     this._centerWrapperFront.addContainer(new Sprite(imagePath.pokerPath, 'front').getContainer())
 
-    if (config) {
-      this._wrapper.setPosition(false, config.x, config.y)
-      this._centerWrapper.setScale(false, config.scale, config.scale)
-      this._centerWrapper.setRotation(false, config.rotation)
-
-      this._wrapper.setPosition(true, 0, 0)
-      this._centerWrapper.setScale(true, 1, 1)
-      this._centerWrapper.setRotation(true, 0)
-    }
-    
     this.drawNumIcon()
     if (['J', 'Q', 'K'].includes(this._pokerValue)) { this.drawJQKIcon() }
 
@@ -72,6 +61,19 @@ export default class Poker implements Wrapper {
 
     this._wrapper.addChild(this._centerWrapper)
     this._wrapper.addChild(this._fanPokerWrapper)
+
+    if (config) {
+      this._wrapper.setPosition(false, config.x, config.y)
+      this._centerWrapper.setScale(false, config.scale, config.scale)
+      this._centerWrapper.setRotation(false, config.rotation)
+
+      this._wrapper.setPosition(true, 0, 0)
+      this._centerWrapper.setScale(true, 1, 1)
+      this._centerWrapper.setRotation(true, 0)
+    }
+    
+    // this._wrapper.addChild(this._centerWrapper)
+    // this._wrapper.addChild(this._fanPokerWrapper)
   }
   // 繪製圖
   private drawNumIcon(): void {
@@ -168,9 +170,11 @@ export default class Poker implements Wrapper {
 
     fanPoker.getAnimatedSprite().onFrameChange = (f:any) => {
       if (f === 7) {
+        _icon.setAlpha(false, 1)
         _icon.setPosition(false, 125, 40)
         _icon.setRotation(false, 0.91)
         _icon.setScale(false, 0.4, 0.4)
+        _num.setAlpha(false, 1)
         _num.setPosition(false, 145, 27)
         _num.setRotation(false, 0.91)
         _num.setScale(false, 0.4, 0.4)
